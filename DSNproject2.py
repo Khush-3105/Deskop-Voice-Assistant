@@ -114,7 +114,6 @@ def logic():
             
             elif ' time ' in query: #tells the current time
                 strTime=datetime.datetime.now().strftime('%I:%M %p')
-                strTime = strTime.replace("0", "")
                 print("The time is "+strTime)
                 speak("The time is "+strTime)
 
@@ -188,7 +187,6 @@ def logic():
                 speak("Time's up")
 
             elif ((' take 'in query)or(' capture 'in query))and((' image 'in query)or(' photo 'in query)): #takes phto from camera
-                warnings.filterwarnings("ignore")
                 cam_port = 0
                 cam = cv2.VideoCapture(cam_port)
                 # reading the input using the camera
