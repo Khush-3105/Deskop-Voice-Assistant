@@ -59,7 +59,7 @@ def takeCommand(): #Takes microphone input from user & returns string output
 def logic():
     if __name__== "__main__": #main function
         wishme()
-        if 1:
+        while True:
             query=takeCommand().lower() #makes input text in lowercase
             query=" "+query+" "
             #logic for executing task based on query
@@ -145,7 +145,7 @@ def logic():
                 newsapi = NewsApiClient(api_key='0b923f88ad8043678cbcc84808217b70')
                 data = newsapi.get_top_headlines(language='en',country='in')
                 headlines=data['articles']
-                for i in range(10):
+                for i in range(5):
                     print(i+1,". ",f'{headlines[i]["title"]}')
                     speak(f'{headlines[i]["title"]}')
 
@@ -180,7 +180,7 @@ def logic():
                     timer=sec
 
                 time.sleep(timer)
-                frequency = 2000 #beep sound
+                frequency = 2000 #beep sound0
                 duration = 100
                 for i in range(0,10):
                     winsound.Beep(frequency,duration)
@@ -209,39 +209,47 @@ def logic():
                     speak("No image detected. Please! try again") 
             
             elif ' reminder ' in query: #sets a reminder
-                speak("Sure,What shall I remind you about?")
-                print("What shall I remind you about?")
-                text = takeCommand()
-                speak("Sure,When shall I remind you?")
-                print("When shall I remind you")
-                rem_time = takeCommand()
-                rem_time = rem_time.replace("in ", "")
-                rem_time = rem_time.replace("about ", "")
-                rem_time = rem_time.replace(" ", "")
-                if 'hour' in rem_time:
-                    rem_time = rem_time.replace("hours", "")
-                    rem_time = rem_time.replace("hour", "")
-                    speak("OK, I shall remind you in "+rem_time+" hours, to "+text)
-                    hour=float(rem_time)
-                    timer_rem=hour*3600
+                try:
+                    speak("Sure,What shall I remind you about?")
+                    print("What shall I remind you about?")
+                    text = takeCommand()
+                    speak("Sure,When shall I remind you?")
+                    print("When shall I remind you")
+                    rem_time = takeCommand()
+                    rem_time = rem_time.replace("in ", "")
+                    rem_time = rem_time.replace("about ", "")
+                    rem_time = rem_time.replace(" ", "")
+                    if 'hour' in rem_time:
+                        rem_time = rem_time.replace("hours", "")
+                        rem_time = rem_time.replace("hour", "")
+                        speak("OK, I shall remind you in "+rem_time+" hours, to "+text)
+                        hour=float(rem_time)
+                        timer_rem=hour*3600
 
-                elif 'minute' in rem_time:
-                    rem_time = rem_time.replace("minutes", "")
-                    rem_time = rem_time.replace("minute", "")
-                    speak("OK, I shall remind you in "+rem_time+" minutes, to "+text)
-                    min=float(rem_time)
-                    timer_rem=min*60
+                    elif 'minute' in rem_time:
+                        rem_time = rem_time.replace("minutes", "")
+                        rem_time = rem_time.replace("minute", "")
+                        speak("OK, I shall remind you in "+rem_time+" minutes, to "+text)
+                        min=float(rem_time)
+                        timer_rem=min*60
 
-                elif 'second' in rem_time:
-                    rem_time = rem_time.replace("seconds", "")
-                    rem_time = rem_time.replace("second", "")
-                    speak("OK, I shall remind you in "+rem_time+" seconds, to "+text)
-                    sec=float(rem_time)
-                    timer_rem=sec
-                time.sleep(timer_rem)
-                for i in range(0,10):
-                    winsound.Beep(2000,100)
-                speak("Its time to "+ text )
+                    elif 'second' in rem_time:
+                        rem_time = rem_time.replace("seconds", "")
+                        rem_time = rem_time.replace("second", "")
+                        speak("OK, I shall remind you in "+rem_time+" seconds, to "+text)
+                        sec=float(rem_time)
+                        timer_rem=sec
+                    time.sleep(timer_rem)
+                    for i in range(0,10):
+                        winsound.Beep(2000,100)
+                    speak("Its time to "+ text )
+                except Exception as e:
+                    print("Wrong Input")
+                    speak("Wrong Input")
+
+            elif (' exit ' in query) or (" bye " in query):
+                speak("Thank you! Have a good day")
+                break
 
             elif (' what ' in query)or(' calculate ' in query)or(' convert ' in query)or(' who ' in query)or (' weather '): #for weather, general questions, conversions and calculations
                 question = query
@@ -254,9 +262,6 @@ def logic():
                     speak(answer)
                 except:    
                     speak("Sorry I don't know that now")
-            
-            else:
-                pass
 
 logic()      
  
