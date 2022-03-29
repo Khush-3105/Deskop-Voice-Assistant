@@ -29,4 +29,3 @@ Method 2:
 1. Download the correct PyAudio wheel file for your system from (https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio).
 2. Open Powershell window for the folder in which the file has been downloaded.
 3. Then install that file using the pip command like (pip install PyAudio‑0.2.11‑cp37‑cp37m‑win_amd64.whl).
-"NOTE: Please check the directory and file name is correct"
