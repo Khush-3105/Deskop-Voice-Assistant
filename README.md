@@ -4,5 +4,5 @@ Description: A Web based Voice Assistant bot using Python  to overcome the limit
 
 Technology: Python (GUI : Tkinter, pyttsx3) and online API’s
 
-![](/R4.png)\
-![](/Slide1.png)\
+![a](./R4.png)\
+![b](./Slide1.PNG)
